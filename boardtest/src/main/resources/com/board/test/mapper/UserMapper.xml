@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 로그인 정보 가져오기 -->
+<mapper namespace="com.board.test.mapper.UserMapper">
+	<select id="loginCheck" resultType="int">
+		SELECT count(name) FROM user WHERE (userid=#{userid} AND pwd=#{pwd})
+	</select>
+
+	<select id="viewMember" resultType="com.board.test.dto.UserDto">
+		SELECT * FROM user WHERE (userid=#{userid} AND pwd=#{pwd})
+	</select>	
+
+
+<!-- 회원가입 -->
+	<insert id="insertUser"
+		parameterType="com.board.test.dto.UserDto">
+		insert into user (userid, name, pwd) values(#{userid}, #{name}, #{pwd})
+	</insert>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.test.mapper.BoardMapper">
+	<select id="getList" resultType="com.board.test.dto.BoardDto">
+		<![CDATA[select * from board where bno > 0]]>
+	</select>
+	
+	<!-- 게시물보기 -->
+	<select id="GetBoardContent" resultType="com.board.test.dto.BoardDto" parameterType="com.board.test.dto.BoardDto">
+	select * from board where bno=#{bno}
+	</select>
+	
+	<!-- 게시물 작성 -->
+	<insert id="InsertBoard" parameterType="com.board.test.dto.BoardDto">
+		insert into board (title, content, writer, regdate) values (#{title},
+		#{content}, #{writer} , CURRENT_TIMESTAMP)
+	</insert>
+	
+	<!-- 게시물삭제 -->
+	<delete id="DeleteBoard" parameterType="int">
+	delete from board where bno=#{bno}
+	</delete>
+
+</mapper>
