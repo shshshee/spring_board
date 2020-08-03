@@ -8,8 +8,8 @@ import lombok.Data;
 public class BoardDto {
 	@Override
 	public String toString() {
-		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", hit=" + hit + "]";
+		return "BoardDto [bno=" + bno + ", title=" + title + ", content=" + content + ", regdate=" + regdate + ", hit="
+				+ hit + "]";
 	}
 
 	public int getBno() {

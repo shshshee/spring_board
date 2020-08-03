@@ -1,4 +1,3 @@
-
 package com.board.test.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +15,9 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
 		HttpSession session = request.getSession();
 
-		Object obj = session.getAttribute("login");
+		/* Object name = session.getAttribute("name"); */
 
-		if (obj == null) {
+		if (session.getAttribute("name") == null) {
 
 			response.sendRedirect("/login");
 			return false;

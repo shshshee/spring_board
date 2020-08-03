@@ -14,13 +14,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 게시물 작성 -->
 	<insert id="InsertBoard" parameterType="com.board.test.dto.BoardDto">
-		insert into board (title, content, writer, regdate) values (#{title},
-		#{content}, #{writer} , CURRENT_TIMESTAMP)
+		insert into board (title, content, regdate, writer) values (#{title},
+		#{content} , CURRENT_TIMESTAMP, #{writer})
 	</insert>
+	
+	<!-- 게시물 수정 -->
+	<update id="update" parameterType="com.board.test.dto.BoardDto">
+	update board set title=#{title}, content=#{content}, writer = #{writer} where bno=#{bno}
+	</update>
 	
 	<!-- 게시물삭제 -->
 	<delete id="DeleteBoard" parameterType="int">
 	delete from board where bno=#{bno}
 	</delete>
+	
+	<!-- 게시물 조회수 -->
+	<update id="updatehit" parameterType="com.board.test.dto.BoardDto">
+	update board set hit=hit+1 where bno=#{bno}
+	</update>
+	
+	<select id="getTotalCount" resultType="int">
+       select count(*) from board where bno>0
+	</select>
+	
+ 	<select id="getListWithPaging" resultType="com.board.test.dto.BoardDto"> 
+   	<![CDATA[ 
+ 	  select  
+ 	    bno, title, content, writer, regdate 
+ 	  from  
+ 	      ( 
+ 	      select /*+INDEX_DESC(board pk_board) */ 
+ 	        rownum rn, bno, title, content, writer, regdate  
+ 	      from  
+ 	        board
+ 	      where rownum <= #{pageNum} * #{amount}
+ 	      )
+ 	      where rn > (#{pageNum} -1) * #{amount}
+ 	  ]]> 
 
+ 	</select> 
+	
 </mapper>

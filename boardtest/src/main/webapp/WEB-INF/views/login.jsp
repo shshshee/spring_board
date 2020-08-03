@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
     <title>로그인</title>
 
@@ -56,13 +58,17 @@
                                 </div>
 
 								<!-- Change this to a button or input when using this as a form -->
-								<button type="button" id="btnLogin">로그인</button>
-				
+								<div class ="col-md-12 text-center">
+									<button class="col-md-12 btn btn-primary" id="btnLogin">로그인</button>
+								</div>
 							</fieldset>
                         </form>
                     </div>
+                </div> 
+                	<!-- 네이버 로그인 button  -->
+                <div class="col-md-12 text-center"><a href="${ url }"/>
+                	<img src="${pageContext.request.contextPath}/resources/image/naverbtn.PNG" id="id_naver_btn" width="300px">
                 </div>
-                
             </div>
         </div>
     </div>
@@ -79,9 +85,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="/resources/dist/js/sb-admin-2.js"></script>
     
-   <script>
-    $(document).ready(function(){ //login 버튼 클릭시 
-    	$("#btnLogin").click(function(){
+   <script type="text/javascript">
+    $(document).ready(function(){ 	
+    	
+    	$("#btnLogin").click(function(){ //login 버튼 클릭시 
     		var userid=$("#userid").val();
     		var pwd=$("#pwd").val();
     		document.form.action="${path}/loginCheck";

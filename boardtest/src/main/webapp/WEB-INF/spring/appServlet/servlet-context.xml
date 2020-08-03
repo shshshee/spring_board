@@ -25,16 +25,20 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<!-- 네이버  -->
+	<beans:bean id="naverLogin" class="com.board.test.controller.naverLogin"></beans:bean>
 
+	<!-- 인터셉터 객체생성 -->
+	<beans:bean id="interceptor" class="com.board.test.interceptor.UserInterceptor">
+	</beans:bean> 
 	<!-- 인터셉터 설정 -->
-<!-- 	<interceptors>
-		<interceptor>
-			<mapping path="/board/get" />
-			<mapping path="/board/register" />
-			<beans:bean class="com.board.test.interceptor.UserInterceptor"></beans:bean>
-		</interceptor>
-	</interceptors>  -->
-
+		<interceptors>
+			<interceptor>
+				<mapping path="/board/register" />
+				<beans:ref bean="interceptor" />
+			</interceptor>
+		</interceptors>
 
 
 	<context:component-scan

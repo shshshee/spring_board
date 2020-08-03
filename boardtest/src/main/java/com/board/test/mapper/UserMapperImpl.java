@@ -1,5 +1,8 @@
 package com.board.test.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -42,9 +45,20 @@ public class UserMapperImpl implements UserMapper {
 		return sqlSession.insert("com.board.test.mapper.UserMapper.insertUser");
 	}
 
-	/*
-	 * @Override public UserDto get(UserDto userDto) { return
-	 * sqlSession.selectOne("com.board.test.mapper.UserMapper.loginCheck", userDto);
-	 * }
-	 */
+	/* 네이버 회원가입 */
+	@Override
+	public int insertNaverUser(Map<String, Object> map) {
+		return sqlSession.insert("com.board.test.mapper.UserMapper.insertNaverUser");
+	}
+
+	/* 네아로 회원가입 check */
+	@Override
+	public int selectNaverCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("com.board.test.mapper.UserMapper.selectNaverCheck", map);
+	}
+
+	@Override
+	public List<UserDto> list() {
+		return sqlSession.selectList("com.board.test.mapper.UserMapper.list");
+	}
 }

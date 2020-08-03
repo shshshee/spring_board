@@ -67,13 +67,6 @@
                 </div>
             </div>
         </div>
-		<script>
-/* 			$(document).on('click', '#btn', function(e) { //저장 
-
-				e.preventDefault();
-				$("#form").submit();
-			}); */
-		</script>
 	</div>
 
     <!-- jQuery -->

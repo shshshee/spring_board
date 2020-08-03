@@ -1,45 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../include/header.jsp"%>
 <!-- 상세보기 페이지 -->
  <div class="row"> 
- 	<div class="col-lg-12"> 
- 		<h3 class="page-header">게시판</h3> 
+<div class="col-lg-12"> 
+ 		<h3 class="page-header"></h3> 
  	</div> 
  	<!-- /.col-lg-12 --> 
- </div> 
+ </div>
  <!-- /.row --> 
+<% String name=(String)session.getAttribute("name"); %>
+ <c:set var="writer" value="${board.writer}"/>
+ <c:set var="name" value="${sessionScope.name }"/>
  <div class="row"> 
  	<div class="col-lg-12"> 
  		<div class="panel panel-default"> 
-			<div class="panel-heading">상세보기</div> 
+			<div class="panel-heading"><h1><c:out value="${board.title}"/></h1></div> 
  			<!-- /.panel-heading --> 
  			<div class="panel-body"> 
- 				<div class="form-group"> 
- 					<label>글번호</label> <input class="form-control" name='bno' 
- 						value='<c:out value="${board.bno}"/>' readonly="readonly"> 
- 				</div> 
- 				<div class="form-group"> 
- 					<label>제목</label> <input class="form-control" name='title' 
- 						value='<c:out value="${board.title}"/>' readonly="readonly"> 
- 				</div> 
- 				<div class="form-group"> 
- 					<label>내용</label> 
+ 				<div> <!-- 작성자 출력  -->
+ 					<label>글번호 : </label> <c:out value="${board.bno}"/>   <c:out value="${name }"/>
+ 					<div></div>
+ 					 <label>작성자 : </label> <c:out value="${writer}"/>
+				</div> 
+ 				<div class="form-group">
+ 				<label>내용</label> 
  					<textarea class="form-control" rows="3" name='content' 
  						readonly="readonly"><c:out value="${board.content}" /></textarea> 
- 				</div> 
- 				<div class="form-group"> 
- 					<label>작성자</label> <input class="form-control" name='writer' 
- 						value='<c:out value="${board.writer}"/>' readonly="readonly"> 
- 				</div> 
- 
- 				<button type=button id='btnList' class="btn btn-sm btn-primary" >목록으로</button>
- 				<button type=button id='btnDelete' class="btn btn-sm btn-primary" >삭제</button> 
- 
- 				 
- 			</div> 
+ 				</div>
+ 				
+ 				<!-- 글쓴이인 경우 수정버튼 활성화  -->
+				<c:choose> 
+					<c:when test='${ name eq writer }'>
+						<button data-oper='update' class="btn btn-default"
+							onclick="location.href='/board/update?bno=<c:out value="${board.bno }"/>'">수정</button>
+						<button data-oper='list' class="btn btn-default">메인화면</button>
+					</c:when>
+					<c:otherwise>
+						<button data-oper='list' class="btn btn-default">메인화면</button>
+					</c:otherwise>
+				</c:choose>
+				<form id='operForm' action="/board/update" method="get">
+					<input type='hidden' id='bno' name='bno'
+						value='<c:out value="${board.bno}"/>'>
+				</form>
+
+			</div> 
  			<!--  end panel-body --> 
  		</div> 
  		<!--  end panel-body --> 
@@ -47,21 +55,20 @@
  	<!-- end panel --> 
  </div> 
  <!-- /.row --> 
- <script>
  
-	//목록으로 이동
-	$(document).on('click', '#btnList', function(){
-		location.href = "${pageContext.request.contextPath}/board/list";
-
+ 
+ <script type="text/javascript">
+	$(document).ready(function() {
+		var operForm = $("#operForm");
+		$("button[data-oper='update']").on("click", function(e) {
+			operForm.attr("action", "/board/update").submit();
+		});
+		$("button[data-oper='list']").on("click", function(e) {
+			operForm.find("#bno").remove();
+			operForm.attr("action", "/board/list")
+			operForm.submit();
+		});
 	});
-	
-	//삭제 
-	$(document).on('click', '#btnDelete', function(){
-    var url = "${pageContext.request.contextPath}/board/deleteBoard";
-    url = url + "?bno=" + ${board.bno};
-		location.href = url;
-	});
-
- </script>
+</script>
 
 <%@include file="../include/footer.jsp"%>

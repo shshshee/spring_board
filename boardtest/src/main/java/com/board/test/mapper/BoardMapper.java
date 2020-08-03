@@ -13,6 +13,10 @@ public interface BoardMapper {
 
 	public int DeleteBoard(int bno); // 삭제
 
+	public int update(BoardDto board); // 수정
+
+	public int updatehit(int bno); // 조회수 업데이트
+
 	/*
 	 * public void insert(BoardDto board);
 	 * 

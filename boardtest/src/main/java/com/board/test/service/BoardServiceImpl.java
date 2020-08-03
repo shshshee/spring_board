@@ -35,8 +35,19 @@ public class BoardServiceImpl implements BoardService {
 
 	// 삭제
 	@Override
-	public void deleteBoard(int bno) {
-		mapper.DeleteBoard(bno);
+	public boolean deleteBoard(int bno) {
+		return mapper.DeleteBoard(bno) == 1;
+	}
+
+	// 수정 업데이트 수행되면 1 리턴
+	@Override
+	public boolean update(BoardDto board) {
+		return mapper.update(board) == 1;
+	}
+
+	@Override
+	public boolean hitupdate(int bno) {
+		return mapper.updatehit(bno) == 1;
 	}
 
 }

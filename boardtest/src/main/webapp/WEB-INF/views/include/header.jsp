@@ -82,27 +82,28 @@
 
  			</div> 
  			<!-- /.navbar-header -->
-
-
 			<ul class="nav navbar-top-links navbar-right">
-				<li class="dropdown"><a class="dropdown-toggle"
+				<li class="dropdown">
+				<p class="text-right">아씨 </p>
+				<a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 				<c:choose>	
 					<c:when test="${not empty sessionScope.name}">
-					<li><a href=""><i class="fa fa-user fa-fw"></i>사용자:<%=session.getAttribute("name") %></a></li>
-						<li><a href="${pageContext.request.contextPath}/logout"><i
-							class="fa fa-user fa-fw"></i>로그아웃</a></li>
+						<li>
+							<a href="${pageContext.request.contextPath}/logout">
+							<i class="fa fa-user fa-fw"></i>로그아웃</a>
+						</li>
 					</c:when>
 					<c:otherwise>
 							<li><a href="${pageContext.request.contextPath}/login"><i
 							class="fa fa-user fa-fw"></i>로그인</a></li>
+							<li><a href="${pageContext.request.contextPath}/signupForm"><i
+								class="fa fa-user fa-fw"></i>회원가입</a></li>
 					</c:otherwise>
 				</c:choose>
-						<li><a href="${pageContext.request.contextPath}/signupForm"><i
-								class="fa fa-user fa-fw"></i>회원가입</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -112,7 +113,7 @@
 			<div class="navbar-default sidebar" role="navigation"> 
  				<div class="sidebar-nav navbar-collapse"> 
  					<ul class="nav" id="side-menu"> 
- 						<li class="sidebar-search"> 
+ 				<!-- 		<li class="sidebar-search"> 
  							<div class="input-group custom-search-form"> 
  								<input type="text" class="form-control" placeholder="Search..."> 
  								<span class="input-group-btn"> 
@@ -120,9 +121,9 @@
  										<i class="fa fa-search"></i> 
  									</button> 
  								</span> 
- 							</div> <!-- /input-group --> 
- 						</li> 
- 						<li><a href="/board/list"><i class="fa fa-dashboard fa-fw"></i>Board List</a></li> 
+ 							</div> /input-group 
+ 						</li>  -->
+ 						<li><a href="/board/list">Board List</a></li> 
  					</ul> 
  				</div> 
  				<!-- /.sidebar-collapse --> 

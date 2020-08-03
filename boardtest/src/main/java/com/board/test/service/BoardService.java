@@ -12,10 +12,10 @@ public interface BoardService {
 
 	public BoardDto GetBoardContent(int bno);
 
-	public void deleteBoard(int bno);
+	public boolean deleteBoard(int bno);
 
-	/*
-	 * // 게시물 등록 public void register(BoardDto board);
-	 */
+	public boolean update(BoardDto board); // 수정
+
+	public boolean hitupdate(int bno);
 
 }

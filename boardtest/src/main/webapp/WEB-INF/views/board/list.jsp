@@ -8,6 +8,7 @@
  	<div class="col-lg-12"> 
  		<h3 class="page-header">게시판 </h3> 
  	</div> 
+ 	
  </div> 
 
 	<div class="row">
@@ -28,15 +29,17 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
+								<th>조회수</th>
 							</tr>
 						</thead>
 						<c:forEach items="${list}" var="board">
 							<tr>
-								<td><c:out value="${board.bno}" /></td>
+								<td><c:out value="${board.bno}" /> </td>
 								<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>
 								<c:out value="${board.title}"/></a></td>
 								<td><c:out value="${board.writer}" /></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:MM:SS" value="${board.regdate}" /></td>
+								<td><c:out value="${board.hit}" /> </td>
 							</tr>
 						</c:forEach>
 					</table>

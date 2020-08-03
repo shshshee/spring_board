@@ -36,4 +36,14 @@ public class BoardMapperImpl implements BoardMapper {
 		return sqlSession.insert("com.board.test.mapper.BoardMapper.DeleteBoard", bno);
 	}
 
+	@Override
+	public int update(BoardDto board) {
+		return sqlSession.update("com.board.test.mapper.BoardMapper.update", board);
+	}
+
+	@Override
+	public int updatehit(int bno) {
+		return sqlSession.update("com.board.test.mapper.BoardMapper.update", bno);
+	}
+
 }

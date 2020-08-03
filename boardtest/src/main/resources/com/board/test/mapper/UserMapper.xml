@@ -12,12 +12,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="viewMember" resultType="com.board.test.dto.UserDto">
 		SELECT * FROM user WHERE (userid=#{userid} AND pwd=#{pwd})
 	</select>	
+	
+	<select id="list" resultType="com.board.test.dto.UserDto">
+		select * from user 
+	</select>
 
 
-<!-- 회원가입 -->
-	<insert id="insertUser"
-		parameterType="com.board.test.dto.UserDto">
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="com.board.test.dto.UserDto">
 		insert into user (userid, name, pwd) values(#{userid}, #{name}, #{pwd})
 	</insert>
+	
+	<!-- 네이버 회원가입  -->
+	<insert id="insertNaverUser" parameterType="map">
+		insert into sns_user (sns_name, sns_email, sns_id) values(#{name}, #{email}, #{id})
+	</insert>
+	
+	<!-- 회원가입 전 중복체크 쿼리 작성 필요 !! -->
+	<!-- 네이버 회원가입 check -->
+	<select id="selectNaverCheck" parameterType="map" resultType="int">
+		select count(*) from sns_user where sns_id = #{id}
+	</select>
+
 
 </mapper>
