@@ -204,7 +204,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
 		<artifactId>jackson-databind</artifactId>
-		<version>2.6.4</version>
+		<version>2.9.10.7</version>
 	</dependency>
 	<!-- naver login (소셜 로그인 사용 라이브러리 ) -->
 	<dependency>
